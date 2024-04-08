@@ -41,9 +41,9 @@ select.addEventListener('click', e => {
 search.addEventListener('input', e => {
     const { value } = e.target //const value = e.target.value
     if (value == '') {
-        render(products)
+        render(data)
     } else {
-        const filteredData = products.filter(product => product.name.toLowerCase().includes(value.toLowerCase()))
+        const filteredData = data.filter(product => product.name.toLowerCase().includes(value.toLowerCase()))
         render(filteredData)
     }
 })
