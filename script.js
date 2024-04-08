@@ -27,13 +27,13 @@ select.addEventListener('click', e => {
 
     switch (value) {
         case 'low':
-            render(products.toSorted((a, b) => a.price - b.price))
+            render(data.toSorted((a, b) => a.price - b.price))
             break;
         case 'high':
-            render(products.toSorted((a, b) => b.price - a.price))
+            render(data.toSorted((a, b) => b.price - a.price))
             break;
         default:
-            render(products)
+            render(data)
             break;
     }
 })
