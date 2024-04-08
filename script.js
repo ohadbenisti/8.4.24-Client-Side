@@ -22,7 +22,7 @@ const render = productsArr => {
     })
 }
 
-select.addEventListener('click', e => {
+select.addEventListener("click", e => {
     const { value } = e.target //const value = e.target.value
 
     switch (value) {

@@ -1,7 +1,44 @@
+const search = document.querySelector('#search')
+const select = document.querySelector('#select')
+
 const container = document.querySelector('#container')
 const dialog = document.querySelector('dialog')
 const productKeys = ['name', 'cat', 'image', 'price']
 let editProductDetails = {}
+
+let data = []
+axios.get('http://localhost:3000/api/products')
+    .then(res => {
+        data = res.data.products;
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+search.addEventListener('input', e => {
+    const { value } = e.target
+    if (value == '') {
+        render(data)
+    } else {
+        const filteredData = data.filter(product => product.name.toLowerCase().includes(value.toLowerCase()))
+        render(filteredData)
+    }
+})
+
+select.addEventListener('click', e => {
+    const { value } = e.target
+    switch (value) {
+        case 'low':
+            render(data.toSorted((a, b) => a.price - b.price))
+            break;
+        case 'high':
+            render(data.toSorted((a, b) => b.price - a.price))
+            break;
+        default:
+            render(data)
+            break;
+    }
+})
 
 const getProducts = () => {
     axios.get('http://localhost:3000/api/products')
